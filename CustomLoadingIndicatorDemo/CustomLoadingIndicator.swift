@@ -13,7 +13,8 @@ private let ANIMATION_DURATION = 2.0
 private let ROTATION_COUNT = 3.0
 private let INSTANCE_DIMENSION = 14.0
 private let MOVE_OUT_OFFSET = 30
-private let COLOR = UIColor.grayColor()
+private let COLOR_1 = UIColor.greenColor()
+private let COLOR_2 = UIColor.blueColor()
 private let OPACITY = 0.75
 
 class CustomLoadingIndicator: UIView {
@@ -34,8 +35,6 @@ class CustomLoadingIndicator: UIView {
         super.init(frame: frame)
         setUp()
     }
-    
-    //gfdg
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -63,7 +62,7 @@ class CustomLoadingIndicator: UIView {
         instanceLayer.transform = CATransform3DMakeScale(0.0, 0.0, 1.0)
         instanceLayer.frame = CGRect(x: 0, y: 0, width: INSTANCE_DIMENSION, height: INSTANCE_DIMENSION)
         // drawing the circle
-        instanceLayer.fillColor = COLOR.CGColor
+        instanceLayer.fillColor = COLOR_1.CGColor
         instanceLayer.lineWidth = CGFloat(INSTANCE_DIMENSION / 2.0)
         instanceLayer.path = UIBezierPath(arcCenter: CGPoint(x: instanceLayer.bounds.width / 2.0, y: instanceLayer.bounds.height / 2.0), radius: CGFloat(INSTANCE_DIMENSION / 4.0), startAngle: CGFloat(0.0), endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
         
@@ -87,8 +86,15 @@ class CustomLoadingIndicator: UIView {
         shrinkAnimation.fillMode = kCAFillModeForwards
         shrinkAnimation.beginTime = animationDuration * 3.0 / 4.0 // begins during the last quater of the animation
         
+        let colorAnimation = CABasicAnimation(keyPath: "fillColor")
+        colorAnimation.toValue = COLOR_2.CGColor
+        colorAnimation.autoreverses = true;
+        colorAnimation.duration = animationDuration / 4.0
+        colorAnimation.repeatCount = 4.0
+        
+        
         let animationGroup = CAAnimationGroup()
-        animationGroup.animations = [moveOutwardAnimation, expandAnimation, shrinkAnimation] // packages all the animations into one group, to be repeated indefinitely
+        animationGroup.animations = [moveOutwardAnimation, expandAnimation, shrinkAnimation, colorAnimation] // packages all the animations into one group, to be repeated indefinitely
         animationGroup.duration = animationDuration
         animationGroup.repeatCount = Float(Int.max)
         self.instanceAnimation = animationGroup
@@ -110,9 +116,5 @@ class CustomLoadingIndicator: UIView {
     
     func isAnimating() -> Bool {
         return animating
-    }
-    
-    func setColor(color: UIColor) {
-        instanceLayer.fillColor = color.CGColor
     }
 }

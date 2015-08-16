@@ -159,6 +159,7 @@
 		C92D1AC41B81112B00CB71A4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = n/a;
 				TargetAttributes = {
@@ -413,6 +414,7 @@
 				C92D1AED1B81112B00CB71A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C92D1AEE1B81112B00CB71A4 /* Build configuration list for PBXNativeTarget "CustomLoadingIndicatorDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +423,7 @@
 				C92D1AF01B81112B00CB71A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

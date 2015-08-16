@@ -19,13 +19,12 @@ class ViewController: UIViewController {
         loadingLabel.textColor = UIColor.blackColor()
         loadingLabel.textAlignment = NSTextAlignment.Center
         self.view.addSubview(loadingLabel)
-        loadingLabel.center = self.view.center
+        loadingLabel.center = CGPoint(x: self.view.center.x, y: self.view.center.y + 55.0);
         
         let customLoadingIndicator = CustomLoadingIndicator()
         self.view.addSubview(customLoadingIndicator)
         customLoadingIndicator.center = self.view.center
         customLoadingIndicator.startAnimating()
-        customLoadingIndicator.setColor(UIColor.greenColor())
     }
 
     override func didReceiveMemoryWarning() {
